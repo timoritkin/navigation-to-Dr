@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הוראות הגעה - לישנסקי 27</title>
-
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Google Fonts (Heebo for modern Hebrew look) -->
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
-
     <style>
         body {
             font-family: 'Heebo', sans-serif;
@@ -55,9 +51,9 @@
         .step-card:nth-child(3) { animation-delay: 0.6s; }
         .step-card:nth-child(4) { animation-delay: 0.8s; }
 
-        /* Darker red for stronger contrast on white (~7:1) + never rely on color alone */
+        /* Darker red for stronger contrast (~10:1 on white, excellent on red-50) */
         .text-strong-red {
-            color: #B00000;
+            color: #7F1D1D;
         }
 
         /* Visible focus ring for keyboard users on every interactive element */
@@ -92,17 +88,13 @@
 
     <!-- Header / Hero Section -->
     <header class="relative bg-blue-600 text-white pt-12 pb-24 rounded-b-[3rem] shadow-xl overflow-hidden group">
-
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-blue-400 opacity-20 blur-3xl z-0 pointer-events-none" aria-hidden="true"></div>
-
         <div class="container mx-auto px-6 relative z-10 text-center">
             <div class="inline-block p-4 rounded-full bg-white/20 mb-4 backdrop-blur-md border border-white/30" aria-hidden="true">
                 <i class="fa-solid fa-location-dot text-3xl text-white"></i>
             </div>
             <h1 class="text-4xl font-black mb-2 tracking-tight drop-shadow-lg">הוראות הגעה למרפאה</h1>
-            <!-- was text-blue-100 (weak contrast on blue-600) -> now white/95, still visually soft via font-weight -->
-            <p class="text-white/95 text-lg mb-6 drop-shadow-md">נשמח לראותכם</p>
-
+            <p class="text-white text-lg mb-6 drop-shadow-md">נשמח לראותכם</p>
             <div class="bg-black/50 backdrop-blur-md rounded-xl p-4 inline-block border border-white/10 max-w-full">
                 <p class="text-xl font-bold">לישנסקי 27, ראשון לציון</p>
                 <button onclick="copyAddress()"
@@ -115,11 +107,9 @@
     </header>
 
     <main id="main-content">
-
         <!-- Main Navigation Buttons -->
         <nav class="container mx-auto px-4 -mt-12 relative z-20" aria-label="ניווט למרפאה">
             <div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col md:flex-row gap-4">
-
                 <a href="https://waze.com/ul/hsv8wp0eyc" target="_blank" rel="noopener noreferrer"
                    class="btn-waze flex-1 py-5 rounded-xl text-white font-bold text-xl shadow-lg shadow-blue-500/30 flex items-center justify-center gap-3 group"
                    aria-label="פתח ניווט למרפאה באפליקציית Waze, נפתח בכרטיסייה חדשה">
@@ -129,7 +119,6 @@
                         Waze
                     </div>
                 </a>
-
                 <a href="https://maps.app.goo.gl/UDeRm8QpRVudfQUp7" target="_blank" rel="noopener noreferrer"
                    class="btn-maps flex-1 py-5 rounded-xl text-white font-bold text-xl shadow-lg shadow-green-500/30 flex items-center justify-center gap-3 group"
                    aria-label="פתח ניווט למרפאה באפליקציית Google Maps, נפתח בכרטיסייה חדשה">
@@ -139,7 +128,6 @@
                         Google Maps
                     </div>
                 </a>
-
             </div>
         </nav>
 
@@ -151,9 +139,12 @@
             </h2>
             <div class="rounded-2xl overflow-hidden shadow-xl border-4 border-white">
                 <img src="images/LISHANSKI.PNG"
-                     alt="תצלום לוויין של המתחם: חץ אדום מסמן מסלול הליכה מהחניון בצד השמאלי-עליון (מסומן 'חניון') אל בניין המרפאה בצד הימני-תחתון"
+                     alt="תצלום לוויין של המתחם עם סימון מסלול ההליכה מהחניון לבניין המרפאה"
                      class="w-full h-auto object-cover">
             </div>
+            <p class="text-center text-slate-600 mt-3 text-sm">
+                החץ האדום מסמן את מסלול ההליכה מהחניון (מסומן בצהוב) אל בניין המרפאה.
+            </p>
         </section>
 
         <!-- Visual Guide Section -->
@@ -163,12 +154,12 @@
                 מדריך ויזואלי להגעה
             </h2>
 
-            <ol class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto list-none">
-
+            <ol class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto list-none" role="list">
+                <!-- Step 1 -->
                 <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
                     <div class="h-56 overflow-hidden relative">
                         <img src="images/20251128_151728.jpg"
-                             alt="מבט מהצומת על רחוב לישנסקי, עם שילוט הרחוב וכניסת החנייה נראית מהצד"
+                             alt="מבט מהצומת על רחוב לישנסקי עם שילוט וכניסת החנייה"
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">1</div>
                     </div>
@@ -180,10 +171,11 @@
                     </div>
                 </li>
 
+                <!-- Step 2 -->
                 <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
                     <div class="h-56 overflow-hidden relative">
                         <img src="images/20251128_124807.jpg"
-                             alt="חזית הבניין וכניסה ראשית מרוצפת עם גגון, המובילה פנימה לקניון"
+                             alt="חזית הבניין וכניסה ראשית מרוצפת עם גגון"
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">2</div>
                     </div>
@@ -195,10 +187,11 @@
                     </div>
                 </li>
 
+                <!-- Step 3 -->
                 <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
                     <div class="h-56 overflow-hidden relative">
                         <img src="images/20251128_122652.jpg"
-                             alt="לובי הבניין עם צמחייה ומדרגות נעות, אזור המעליות נראה בהמשך המסדרון"
+                             alt="לובי הבניין עם צמחייה ומדרגות נעות"
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">3</div>
                     </div>
@@ -210,10 +203,11 @@
                     </div>
                 </li>
 
+                <!-- Step 4 -->
                 <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
                     <div class="h-56 overflow-hidden relative">
                         <img src="images/20251128_122829.jpg"
-                             alt="דלת כניסה למשרד המרפאה, ממוקמת מיד מימין ליציאה מהמעלית בקומה הראשונה"
+                             alt="דלת הכניסה למרפאה מימין ליציאה מהמעלית"
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">4</div>
                     </div>
@@ -224,23 +218,24 @@
                         <p class="text-strong-red font-bold text-lg leading-relaxed">הכניסה למרפאה ישר מצד ימין מהמעלית.</p>
                     </div>
                 </li>
-
             </ol>
         </section>
 
-        <!-- Accessibility statement placeholder - required under regulation 34(a)(4) if the clinic isn't exempt -->
-        <section class="container mx-auto px-4 mt-12 max-w-2xl text-center text-sm text-slate-500" aria-labelledby="accessibility-heading">
-            <h2 id="accessibility-heading" class="font-bold text-slate-700 mb-2">נגישות</h2>
-            <p>
-                אנו שואפים להנגיש את המידע כאן לכלל המטופלים. במידה ונתקלתם בקושי בגישה למידע,
-                ניתן לפנות אלינו בטלפון <a href="tel:0542394128" class="underline">0542394128</a>               
+        <!-- Accessibility statement -->
+        <section class="container mx-auto px-4 mt-12 max-w-2xl text-center text-sm text-slate-600" aria-labelledby="accessibility-heading">
+            <h2 id="accessibility-heading" class="font-bold text-slate-800 mb-2 text-base">הצהרת נגישות</h2>
+            <p class="leading-relaxed">
+                אנו שואפים להנגיש את המידע כאן לכלל המטופלים בהתאם לתקן ישראלי 5568 (WCAG 2.0 AA).
+                במידה ונתקלתם בקושי בגישה למידע, ניתן לפנות אלינו בטלפון
+                <a href="tel:0542394128" class="underline text-blue-700 hover:text-blue-900">054-239-4128</a>.
+                <br>
+                <span class="text-xs text-slate-500 mt-1 block">עודכן לאחרונה: ספטמבר 2026</span>
             </p>
         </section>
-
     </main>
 
     <!-- Contact / Footer -->
-    <footer class="text-center mt-12 mb-6 text-slate-400 text-sm">
+    <footer class="text-center mt-12 mb-6 text-slate-500 text-sm">
         <p class="flex items-center justify-center gap-2">
             <span class="w-1 h-1 bg-slate-400 rounded-full" aria-hidden="true"></span>
             נסיעה טובה ובטוחה
