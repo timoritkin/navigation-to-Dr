@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הוראות הגעה - לישנסקי 27</title>
-    
+
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts (Heebo for modern Hebrew look) -->
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
 
@@ -26,21 +26,23 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
         }
         .btn-waze {
-            background: linear-gradient(135deg, #33ccff 0%, #0099ff 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-maps {
-            background: linear-gradient(135deg, #34a853 0%, #0f9d58 100%);
+            background: linear-gradient(135deg, #15803d 0%, #14532d 100%);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-waze:active, .btn-maps:active {
             transform: scale(0.96);
         }
-        /* Fade in animation */
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+        /* Fade in animation - respects reduced motion preference */
+        @media (prefers-reduced-motion: no-preference) {
+            .fade-in-up {
+                animation: fadeInUp 0.8s ease-out forwards;
+                opacity: 0;
+                transform: translateY(20px);
+            }
         }
         @keyframes fadeInUp {
             to {
@@ -52,182 +54,232 @@
         .step-card:nth-child(2) { animation-delay: 0.4s; }
         .step-card:nth-child(3) { animation-delay: 0.6s; }
         .step-card:nth-child(4) { animation-delay: 0.8s; }
-        
-        /* Custom color for high visibility text: #D90202 */
+
+        /* Darker red for stronger contrast on white (~7:1) + never rely on color alone */
         .text-strong-red {
-            color: #D90202;
+            color: #B00000;
+        }
+
+        /* Visible focus ring for keyboard users on every interactive element */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #1d4ed8;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Skip link: hidden until focused */
+        .skip-link {
+            position: absolute;
+            right: -999px;
+            top: auto;
+            background: #1e293b;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            right: 1rem;
+            top: 1rem;
         }
     </style>
 </head>
 <body class="text-slate-800 pb-12">
 
-    <!-- Header / Hero Section (Simplified) -->
-    <div class="relative bg-blue-600 text-white pt-12 pb-24 rounded-b-[3rem] shadow-xl overflow-hidden group">
-        
-        <!-- Abstract Background Shape overlay -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-blue-400 opacity-20 blur-3xl z-0 pointer-events-none"></div>
-        
+    <!-- Skip link for keyboard/screen-reader users -->
+    <a href="#main-content" class="skip-link">דלג לתוכן המרכזי</a>
+
+    <!-- Header / Hero Section -->
+    <header class="relative bg-blue-600 text-white pt-12 pb-24 rounded-b-[3rem] shadow-xl overflow-hidden group">
+
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-blue-400 opacity-20 blur-3xl z-0 pointer-events-none" aria-hidden="true"></div>
+
         <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="inline-block p-4 rounded-full bg-white/20 mb-4 backdrop-blur-md border border-white/30">
+            <div class="inline-block p-4 rounded-full bg-white/20 mb-4 backdrop-blur-md border border-white/30" aria-hidden="true">
                 <i class="fa-solid fa-location-dot text-3xl text-white"></i>
             </div>
             <h1 class="text-4xl font-black mb-2 tracking-tight drop-shadow-lg">הוראות הגעה למרפאה</h1>
-            <p class="text-blue-100 text-lg mb-6 drop-shadow-md">נשמח לראותכם </p>
-            
-            <div class="bg-black/30 backdrop-blur-md rounded-xl p-4 inline-block border border-white/10 max-w-full">
+            <!-- was text-blue-100 (weak contrast on blue-600) -> now white/95, still visually soft via font-weight -->
+            <p class="text-white/95 text-lg mb-6 drop-shadow-md">נשמח לראותכם</p>
+
+            <div class="bg-black/50 backdrop-blur-md rounded-xl p-4 inline-block border border-white/10 max-w-full">
                 <p class="text-xl font-bold">לישנסקי 27, ראשון לציון</p>
-                <button onclick="copyAddress()" class="text-sm text-blue-200 mt-2 hover:text-white transition-colors flex items-center justify-center gap-2 w-full py-2 bg-white/5 rounded-lg active:bg-white/10">
-                    <i class="fa-regular fa-copy"></i> לחץ להעתיק כתובת
+                <button onclick="copyAddress()"
+                        class="text-sm text-white mt-2 hover:text-blue-200 transition-colors flex items-center justify-center gap-2 w-full py-2 bg-white/10 rounded-lg active:bg-white/20"
+                        aria-label="העתק את הכתובת לישנסקי 27, ראשון לציון ללוח">
+                    <i class="fa-regular fa-copy" aria-hidden="true"></i> לחץ להעתיק כתובת
                 </button>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Main Navigation Buttons Container -->
-    <div class="container mx-auto px-4 -mt-12 relative z-20">
-        <div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col md:flex-row gap-4">
-            
-            <!-- Waze Button -->
-            <a href="https://waze.com/ul/hsv8wp0eyc" target="_blank" class="btn-waze flex-1 py-5 rounded-xl text-white font-bold text-xl shadow-lg shadow-blue-500/30 flex items-center justify-center gap-3 group">
-                <i class="fa-brands fa-waze text-3xl group-hover:rotate-12 transition-transform"></i>
-                <div>
-                    <span class="block text-xs font-normal opacity-90">נווט עם</span>
-                    Waze
-                </div>
-            </a>
+    <main id="main-content">
 
-            <!-- Google Maps Button -->
-            <a href="https://maps.app.goo.gl/UDeRm8QpRVudfQUp7" target="_blank" class="btn-maps flex-1 py-5 rounded-xl text-white font-bold text-xl shadow-lg shadow-green-500/30 flex items-center justify-center gap-3 group">
-                <i class="fa-solid fa-map-location-dot text-3xl group-hover:scale-110 transition-transform"></i>
-                <div>
-                     <span class="block text-xs font-normal opacity-90">נווט עם</span>
-                    Google Maps
-                </div>
-            </a>
+        <!-- Main Navigation Buttons -->
+        <nav class="container mx-auto px-4 -mt-12 relative z-20" aria-label="ניווט למרפאה">
+            <div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col md:flex-row gap-4">
 
-        </div>
-    </div>
+                <a href="https://waze.com/ul/hsv8wp0eyc" target="_blank" rel="noopener noreferrer"
+                   class="btn-waze flex-1 py-5 rounded-xl text-white font-bold text-xl shadow-lg shadow-blue-500/30 flex items-center justify-center gap-3 group"
+                   aria-label="פתח ניווט למרפאה באפליקציית Waze, נפתח בכרטיסייה חדשה">
+                    <i class="fa-brands fa-waze text-3xl group-hover:rotate-12 transition-transform" aria-hidden="true"></i>
+                    <div>
+                        <span class="block text-xs font-normal opacity-90">נווט עם</span>
+                        Waze
+                    </div>
+                </a>
 
-    <!-- NEW SECTION: Satellite Image Below Buttons -->
-    <div class="container mx-auto px-4 mt-12 max-w-4xl">
-        <h2 class="text-2xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-            <i class="fa-solid fa-satellite text-blue-600"></i>
-            מבט לווין על המתחם
-        </h2>
-        <div class="rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-            <!-- Ensure images/LISHANSKI.PNG is accessible. Assuming the path is correct based on the previous file. -->
-            <img src="images/LISHANSKI.PNG" alt="מפת הגעה לווינית" class="w-full h-auto object-cover">
-        </div>
-    </div>
-    
-    <!-- Visual Guide Section -->
-    <div class="container mx-auto px-4 mt-12">
-        <h2 class="text-2xl font-bold text-center mb-8 flex items-center justify-center gap-2">
-            <i class="fa-solid fa-camera text-blue-600"></i>
-            מדריך ויזואלי להגעה
-        </h2>
+                <a href="https://maps.app.goo.gl/UDeRm8QpRVudfQUp7" target="_blank" rel="noopener noreferrer"
+                   class="btn-maps flex-1 py-5 rounded-xl text-white font-bold text-xl shadow-lg shadow-green-500/30 flex items-center justify-center gap-3 group"
+                   aria-label="פתח ניווט למרפאה באפליקציית Google Maps, נפתח בכרטיסייה חדשה">
+                    <i class="fa-solid fa-map-location-dot text-3xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+                    <div>
+                         <span class="block text-xs font-normal opacity-90">נווט עם</span>
+                        Google Maps
+                    </div>
+                </a>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            
-            <!-- Step 1: Street View -->
-            <div class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
-                <div class="h-56 overflow-hidden relative">
-                    <img src="images/20251128_151728.jpg" alt="רחוב לישנסקי" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg">1</div>
-                </div>
-                <div class="p-5">
-                    <!-- Increased title size to text-2xl and applied custom red color -->
-                    <h3 class="font-bold text-2xl mb-2 text-strong-red">הגעה לרחוב</h3>
-                    <!-- Increased description size to text-lg and applied custom red color and font-bold -->
-                    <p class="text-strong-red font-bold text-lg leading-relaxed">מבט מהצומת על רחוב לישנסקי. ניתן לראות את הכניסה לחנייה מלפנים.</p>
-                </div>
             </div>
+        </nav>
 
-            <!-- Step 2: Building Exterior -->
-            <div class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
-                <div class="h-56 overflow-hidden relative">
-                    <img src="images/20251128_124807.jpg" alt="כניסה לבניין" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg">2</div>
-                </div>
-                <div class="p-5">
-                    <!-- Increased title size to text-2xl and applied custom red color -->
-                    <h3 class="font-bold text-2xl mb-2 text-strong-red">כניסה למתחם</h3>
-                    <!-- Increased description size to text-lg and applied custom red color and font-bold -->
-                    <p class="text-strong-red font-bold text-lg leading-relaxed">כניסה הראשית לקניוכל</p>
-                </div>
+        <!-- Satellite Image -->
+        <section class="container mx-auto px-4 mt-12 max-w-4xl" aria-labelledby="sat-heading">
+            <h2 id="sat-heading" class="text-2xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-satellite text-blue-600" aria-hidden="true"></i>
+                מבט לווין על המתחם
+            </h2>
+            <div class="rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                <img src="images/LISHANSKI.PNG"
+                     alt="תצלום לוויין של המתחם: חץ אדום מסמן מסלול הליכה מהחניון בצד השמאלי-עליון (מסומן 'חניון') אל בניין המרפאה בצד הימני-תחתון"
+                     class="w-full h-auto object-cover">
             </div>
+        </section>
 
-            <!-- Step 3: Lobby -->
-            <div class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
-                <div class="h-56 overflow-hidden relative">
-                    <img src="images/20251128_122652.jpg" alt="לובי הבניין" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg">3</div>
-                </div>
-                <div class="p-5">
-                    <!-- Increased title size to text-2xl and applied custom red color -->
-                    <h3 class="font-bold text-2xl mb-2 text-strong-red">בלובי הבניין</h3>
-                    <!-- Increased description size to text-lg and applied custom red color and font-bold -->
-                    <p class="text-strong-red font-bold text-lg leading-relaxed">הלובי הפנימי עם צמחייה ודרגנועים. המשיכו פנימה לכיוון המעליות לקומה הראשונה.</p>
-                </div>
-            </div>
+        <!-- Visual Guide Section -->
+        <section class="container mx-auto px-4 mt-12" aria-labelledby="guide-heading">
+            <h2 id="guide-heading" class="text-2xl font-bold text-center mb-8 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-camera text-blue-600" aria-hidden="true"></i>
+                מדריך ויזואלי להגעה
+            </h2>
 
-            <!-- Step 4: Office Entrance -->
-            <div class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
-                <div class="h-56 overflow-hidden relative">
-                    <img src="images/20251128_122829.jpg" alt="כניסה למשרד" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg">4</div>
-                </div>
-                <div class="p-5">
-                    <!-- Increased title size to text-2xl and applied custom red color -->
-                    <h3 class="font-bold text-2xl mb-2 text-strong-red">הגעתם ליעד</h3>
-                    <!-- Increased description size to text-lg and applied custom red color and font-bold -->
-                    <p class="text-strong-red font-bold text-lg leading-relaxed">הכניסה למרפאה ישר מצד ימין מהמעלית.</p>
-                </div>
-            </div>
+            <ol class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto list-none">
 
-        </div>
-    </div>
+                <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="images/20251128_151728.jpg"
+                             alt="מבט מהצומת על רחוב לישנסקי, עם שילוט הרחוב וכניסת החנייה נראית מהצד"
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">1</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-2xl mb-2 text-strong-red">
+                            <span class="inline-block bg-red-50 rounded px-2">שלב 1 — הגעה לרחוב</span>
+                        </h3>
+                        <p class="text-strong-red font-bold text-lg leading-relaxed">מבט מהצומת על רחוב לישנסקי. ניתן לראות את הכניסה לחנייה מלפנים.</p>
+                    </div>
+                </li>
+
+                <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="images/20251128_124807.jpg"
+                             alt="חזית הבניין וכניסה ראשית מרוצפת עם גגון, המובילה פנימה לקניון"
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">2</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-2xl mb-2 text-strong-red">
+                            <span class="inline-block bg-red-50 rounded px-2">שלב 2 — כניסה למתחם</span>
+                        </h3>
+                        <p class="text-strong-red font-bold text-lg leading-relaxed">כניסה הראשית לקניון.</p>
+                    </div>
+                </li>
+
+                <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="images/20251128_122652.jpg"
+                             alt="לובי הבניין עם צמחייה ומדרגות נעות, אזור המעליות נראה בהמשך המסדרון"
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">3</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-2xl mb-2 text-strong-red">
+                            <span class="inline-block bg-red-50 rounded px-2">שלב 3 — בלובי הבניין</span>
+                        </h3>
+                        <p class="text-strong-red font-bold text-lg leading-relaxed">הלובי הפנימי עם צמחייה ומדרגות נעות. המשיכו פנימה לכיוון המעליות לקומה הראשונה.</p>
+                    </div>
+                </li>
+
+                <li class="step-card fade-in-up bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="images/20251128_122829.jpg"
+                             alt="דלת כניסה למשרד המרפאה, ממוקמת מיד מימין ליציאה מהמעלית בקומה הראשונה"
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg" aria-hidden="true">4</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-2xl mb-2 text-strong-red">
+                            <span class="inline-block bg-red-50 rounded px-2">שלב 4 — הגעתם ליעד</span>
+                        </h3>
+                        <p class="text-strong-red font-bold text-lg leading-relaxed">הכניסה למרפאה ישר מצד ימין מהמעלית.</p>
+                    </div>
+                </li>
+
+            </ol>
+        </section>
+
+        <!-- Accessibility statement placeholder - required under regulation 34(a)(4) if the clinic isn't exempt -->
+        <section class="container mx-auto px-4 mt-12 max-w-2xl text-center text-sm text-slate-500" aria-labelledby="accessibility-heading">
+            <h2 id="accessibility-heading" class="font-bold text-slate-700 mb-2">נגישות</h2>
+            <p>
+                אנו שואפים להנגיש את המידע כאן לכלל המטופלים. במידה ונתקלתם בקושי בגישה למידע,
+                ניתן לפנות אלינו בטלפון <a href="tel:0000000000" class="underline">[מספר טלפון]</a>
+                או במייל <a href="mailto:example@example.com" class="underline">[כתובת מייל]</a>.
+            </p>
+        </section>
+
+    </main>
 
     <!-- Contact / Footer -->
     <footer class="text-center mt-12 mb-6 text-slate-400 text-sm">
         <p class="flex items-center justify-center gap-2">
-            <span class="w-1 h-1 bg-slate-400 rounded-full"></span>
+            <span class="w-1 h-1 bg-slate-400 rounded-full" aria-hidden="true"></span>
             נסיעה טובה ובטוחה
-            <span class="w-1 h-1 bg-slate-400 rounded-full"></span>
+            <span class="w-1 h-1 bg-slate-400 rounded-full" aria-hidden="true"></span>
         </p>
     </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50 flex items-center gap-2 min-w-max">
-        <i class="fa-solid fa-check text-green-400"></i>
+    <!-- Toast Notification - announced to screen readers via aria-live -->
+    <div id="toast"
+         class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50 flex items-center gap-2 min-w-max"
+         role="status" aria-live="polite">
+        <i class="fa-solid fa-check text-green-400" aria-hidden="true"></i>
         הכתובת הועתקה בהצלחה
     </div>
 
     <script>
         function copyAddress() {
             const address = "לישנסקי 27, ראשון לציון";
-            // Uses clipboard API with fallback for older browsers if needed, though most mobile browsers support this well now
             navigator.clipboard.writeText(address).then(() => {
-                const toast = document.getElementById('toast');
-                toast.style.opacity = '1';
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                }, 2000);
+                showToast();
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
-                // Fallback for some specific webview contexts
                 const textArea = document.createElement("textarea");
                 textArea.value = address;
                 document.body.appendChild(textArea);
                 textArea.select();
                 document.execCommand("Copy");
                 textArea.remove();
-                const toast = document.getElementById('toast');
-                toast.style.opacity = '1';
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                }, 2000);
+                showToast();
             });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
         }
     </script>
 </body>
